@@ -7,3 +7,27 @@ class Room:
         self.price = price
         self.longitude = longitude
         self.latitude = latitude
+
+    def to_dict(self):
+        return {
+            'code': self.code,
+            'size': self.size,
+            'price': self.price,
+            'latitude': self.latitude,
+            'longitude': self.longitude,
+        }
+
+    @classmethod
+    def from_dict(cls, adict):
+        return cls(
+            code=adict['code'],
+            size=adict['size'],
+            price=adict['price'],
+            latitude=adict['latitude'],
+            longitude=adict['longitude']
+        )
+
+    def __eq__(self, other):
+        return self.to_dict() == other.to_dict()
+
+
